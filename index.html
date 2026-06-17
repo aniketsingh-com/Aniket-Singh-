@@ -4,23 +4,106 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aniket Singh | Esports Community, Events & Partnerships Professional</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter & Playfair Display -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="./public/assets/css/style.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        premium: {
+                            obsidian: '#0A0A0C',
+                            slate: '#1E293B',
+                            charcoal: '#334155',
+                            cream: '#FAF9F6',
+                            gold: '#B89047',
+                            mutedGold: '#C5A880',
+                            accentBlue: '#0F4C81',
+                            lightGray: '#F8FAFC',
+                            borderGray: '#E2E8F0',
+                        }
+                    },
+                    letterSpacing: {
+                        superWide: '0.25em',
+                        executive: '0.15em',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FAF9F6; /* Premium soft cream background */
+            color: #0A0A0C;
+            transition: background-color 0.3s ease;
+        }
+        .editorial-title {
+            font-family: 'Playfair Display', serif;
+        }
+        .blur-backdrop {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF9F6;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D1D5DB;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9CA3AF;
+        }
+        /* Subtle Grid Pattern Overlay */
+        .bg-grid-pattern {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(0, 0, 0, 0.015) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.015) 1px, transparent 1px);
+        }
+        /* Page views transition styles */
+        .page-view {
+            display: none;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        .page-view.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 <body class="antialiased overflow-x-hidden bg-grid-pattern">
 
+    <!-- Top Announcement Status Bar -->
     <div class="bg-premium-obsidian text-white text-[10px] py-2.5 px-6 text-center tracking-widest uppercase font-semibold relative z-50">
         <span>Strategic Esports Partnerships & Community Ecosystem Alignment</span>
         <span class="mx-3 text-premium-gold">|</span>
         <span class="text-neutral-400">Managing Director @ ZARX Technologies</span>
     </div>
 
+    <!-- Sticky Elegant Navigation with Hamburger Menu on TOP LEFT -->
     <header id="main-header" class="sticky top-0 z-40 transition-all duration-300 bg-white/95 blur-backdrop border-b border-premium-borderGray">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             
+            <!-- TOP LEFT HAMBURGER BUTTON -->
             <div class="flex items-center space-x-4">
                 <button id="hamburger-menu-btn" onclick="toggleMenu()" class="p-2.5 text-premium-obsidian hover:text-premium-gold transition-colors duration-200 focus:outline-none" aria-label="Toggle Menu Drawer">
                     <i id="menu-icon" data-lucide="menu" class="w-6 h-6"></i>
@@ -28,13 +111,15 @@
                 <span class="text-[10px] tracking-widest uppercase text-neutral-400 font-semibold hidden sm:inline">Navigate Ecosystem</span>
             </div>
 
+            <!-- CENTRAL PREMIUM LOGO -->
             <a href="javascript:void(0)" onclick="navigateTo('home')" class="flex flex-col items-center text-center">
                 <span class="text-lg font-bold tracking-superWide text-premium-obsidian">ANIKET SINGH</span>
                 <span class="text-[8px] tracking-widest text-premium-gold font-medium uppercase mt-0.5">Esports Community & Partnerships</span>
             </a>
 
+            <!-- TOP RIGHT QUICK CONTACT -->
             <div>
-                <a href="javascript:void(0)" onclick="navigateTo('contact')" class="inline-flex items-center space-x-2 text-xs tracking-widest uppercase font-semibold border-b border-premium-obsidian pb-1 hover:text-premium-gold hover:border-premium-gold transition-all duration-300">
+                <a href="javascript:void(0)" onclick="navigateTo('contact')" class="inline-flex items-center space-x-2 text-xs tracking-widest uppercase font-semibold border-b border-premium-borderGray pb-1 hover:text-premium-gold hover:border-premium-gold transition-all duration-300">
                     <span class="hidden md:inline">Contact</span>
                     <i data-lucide="mail" class="w-3.5 h-3.5"></i>
                 </a>
@@ -42,10 +127,12 @@
         </div>
     </header>
 
+    <!-- FULL-SCREEN OVERLAY DRAWER MENU -->
     <div id="navigation-drawer" class="fixed inset-0 z-30 bg-premium-obsidian/95 blur-backdrop transform -translate-x-full transition-transform duration-500 ease-in-out flex flex-col justify-between pt-32 pb-12 px-8 sm:px-16">
         <div class="max-w-5xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             
-            <nav class="flex flex-col space-y-6 text-2xl sm:text-3xl font-serif text-white">
+            <!-- Left Side navigation links -->
+            <nav class="flex flex-col space-y-6 text-2xl sm:text-3xl font-serif text-white font-sans">
                 <a href="javascript:void(0)" onclick="navigateTo('home')" class="hover:text-premium-gold transition-colors duration-200 flex items-center space-x-4 group">
                     <span class="text-xs font-sans tracking-widest text-premium-gold">01</span>
                     <span class="group-hover:translate-x-2 transition-transform duration-300">Home Perspective</span>
@@ -72,6 +159,7 @@
                 </a>
             </nav>
 
+            <!-- Right Side brand info -->
             <div class="hidden md:block space-y-6 text-neutral-400 border-l border-neutral-800 pl-12">
                 <span class="text-xs uppercase tracking-superWide text-premium-gold font-bold block">The Strategic Vector</span>
                 <p class="text-sm font-light leading-relaxed">
@@ -90,6 +178,7 @@
             </div>
         </div>
 
+        <!-- Social Channels Footer inside menu -->
         <div class="max-w-5xl mx-auto w-full pt-8 border-t border-neutral-900 flex justify-between items-center text-xs text-neutral-500">
             <span>© 2026 ANIKET SINGH</span>
             <div class="flex space-x-6">
@@ -100,25 +189,29 @@
     </div>
 
 
+    <!-- ================= PAGE 1: HOME ================= -->
     <main id="page-home" class="page-view active min-h-screen">
+        <!-- Hero Segment with Integrated User Picture -->
         <section class="relative pt-12 pb-24 md:py-28 overflow-hidden bg-white border-b border-premium-borderGray">
             <div class="max-w-7xl mx-auto px-6 relative z-10">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
                     
+                    <!-- Narrative Context (Left) -->
                     <div class="lg:col-span-7 flex flex-col space-y-8">
                         <div class="inline-flex items-center space-x-2 bg-neutral-100 border border-neutral-200 px-3 py-1.5 rounded-full w-max">
                             <span class="w-2 h-2 rounded-full bg-premium-gold animate-pulse"></span>
                             <span class="text-[10px] uppercase tracking-widest font-bold text-premium-charcoal">Esports Infrastructure & Corporate Development</span>
                         </div>
 
-                        <h1 class="editorial-title text-4xl sm:text-5xl lg:text-6xl text-premium-obsidian font-normal leading-tight">
-                            Scaling Grassroots Communities into <span class="italic text-premium-gold">Enterprise Platforms</span>.
+                        <h1 class="editorial-title text-4xl sm:text-5xl lg:text-6xl text-premium-obsidian font-Poppins leading-tight">
+                            Scaling Grassroots Communities into <span class="Poppins text-premium-gold">Enterprise Platforms</span>.
                         </h1>
 
-                        <p class="text-base text-premium-charcoal max-w-xl leading-relaxed font-light">
+                        <p class="text-base text-premium-charcoal max-w-xl leading-relaxed font-light font-Lora">
                             With over 5 years of domain expertise across massive-scale esports leagues, national summits, creator ecosystems, and high-impact sports infrastructure, I coordinate partnerships that capture audience velocity and convert engagement.
                         </p>
 
+                        <!-- Highlights Quick Grid -->
                         <div class="grid grid-cols-3 gap-6 pt-4 border-t border-neutral-100">
                             <div>
                                 <span class="block text-2xl lg:text-3xl font-light text-premium-obsidian editorial-title">5+ Years</span>
@@ -144,25 +237,19 @@
                         </div>
                     </div>
 
+                    <!-- USER ACTUAL PICTURE FRAME (Right) -->
                     <div class="lg:col-span-5 relative mt-6 lg:mt-0">
                         <div class="relative mx-auto max-w-[400px]">
-                            <div class="absolute -inset-4 rounded-2xl bg-neutral-100/80 -rotate-2 z-0"></div>
-                            
+                            <!-- Master Framing Container -->
                             <div class="relative z-10 bg-white border border-premium-borderGray p-4 shadow-xl rounded-lg">
                                 <div class="overflow-hidden aspect-square bg-neutral-100 rounded mb-4 relative group">
-                                    
-                                    <img src="./public/assets/images/profile.png" 
+                                    <!-- DISPLAY ACTUAL USER IMAGE -->
+                                    <img src="pfp.jpeg" 
                                          alt="Aniket Singh - Esports Specialist" 
-                                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                         onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23eaeaea%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2216%22 fill=%22%23666%22>Aniket Singh Profile</text></svg>.'">
-                                    
-                                    <div class="absolute inset-0 bg-gradient-to-t from-premium-obsidian/60 via-transparent to-transparent flex items-end p-6">
-                                        <div>
-                                            <p class="text-white text-base font-serif italic">"Structure governs engagement; velocity governs value."</p>
-                                        </div>
-                                    </div>
+                                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23eaeaea%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2216%22 fill=%22%23333%22>Aniket Singh Profile</text></svg>'">
                                 </div>
                                 
+                                <!-- Core Stat Label -->
                                 <div class="bg-neutral-50 p-4 border border-neutral-100 rounded text-xs">
                                     <div class="flex justify-between items-center">
                                         <span class="text-neutral-500 font-medium">Strategic Objective:</span>
@@ -177,6 +264,7 @@
             </div>
         </section>
 
+        <!-- Executive Summary Section -->
         <section class="py-20 bg-premium-lightGray border-b border-premium-borderGray">
             <div class="max-w-7xl mx-auto px-6">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
@@ -198,44 +286,92 @@
             </div>
         </section>
 
+        <!-- Dynamic Image Sliders Section -->
         <section class="py-20 bg-white border-b border-premium-borderGray">
             <div class="max-w-7xl mx-auto px-6">
                 <div class="mb-12 text-center md:text-left">
                     <span class="text-xs uppercase tracking-superWide text-premium-gold font-bold block mb-3">Ecosystem Artifacts</span>
                     <h2 class="editorial-title text-3xl text-premium-obsidian font-normal">Event & Operational Gallery</h2>
-                    <p class="text-xs text-neutral-500 mt-2">Dashed blocks allocated for live-action esports tournament photos, stage hosting snapshots, and summit highlights.</p>
+                    <p class="text-xs text-neutral-500 mt-2">Smooth, continuous auto-sliding carousels displaying live tournament settings, brand panels, and community assemblies.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="border-2 border-dashed border-premium-borderGray bg-premium-lightGray p-8 rounded flex flex-col items-center justify-center text-center aspect-[4/3] group hover:border-premium-gold transition-colors duration-300">
-                        <div class="w-12 h-12 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-400 group-hover:text-premium-gold group-hover:bg-amber-50 transition-colors mb-4">
-                            <i data-lucide="image" class="w-6 h-6"></i>
-                        </div>
-                        <span class="text-xs font-semibold text-premium-obsidian uppercase tracking-wider block">Tournament Arena Highlight</span>
-                        <span class="text-[10px] text-neutral-400 mt-1 max-w-[200px]">Link target to ./public/assets/images/arena-hero.jpg later.</span>
+
+                    <!-- Photo Spot 1 -->
+                    <div class="overflow-hidden rounded-xl w-full h-[320px] bg-neutral-100 border border-premium-borderGray relative">
+                        <div id="event-slider" class="flex h-full w-full transition-transform duration-700 ease-in-out">                      
+                            <div class="w-full h-full flex-shrink-0">
+                                <img src="images/event1.png" class="w-full h-full object-cover" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22320%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23eaeaea%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2214%22 fill=%22%23666%22>Tournament Highlight 1</text></svg>'">
+                            </div>
+                            <div class="w-full h-full flex-shrink-0">
+                                <img src="images/event2.png" class="w-full h-full object-cover" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22320%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23eaeaea%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2214%22 fill=%22%23666%22>Tournament Highlight 2</text></svg>'">
+                            </div> 
+                            <div class="w-full h-full flex-shrink-0">
+                                <img src="images/event3.png" class="w-full h-full object-cover" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22320%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23eaeaea%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2214%22 fill=%22%23666%22>Tournament Highlight 3</text></svg>'">
+                            </div>
+                            <div class="w-full h-full flex-shrink-0">
+                                <img src="images/event4.png" class="w-full h-full object-cover" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22320%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23eaeaea%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2214%22 fill=%22%23666%22>Tournament Highlight 4</text></svg>'">
+                            </div>
+                        </div> 
+                        <div class="absolute bottom-3 left-3 bg-premium-obsidian/80 text-white text-[9px] uppercase tracking-widest py-1 px-2 rounded">Events & Arena</div>
                     </div>
 
-                    <div class="border-2 border-dashed border-premium-borderGray bg-premium-lightGray p-8 rounded flex flex-col items-center justify-center text-center aspect-[4/3] group hover:border-premium-gold transition-colors duration-300">
-                        <div class="w-12 h-12 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-400 group-hover:text-premium-gold group-hover:bg-amber-50 transition-colors mb-4">
-                            <i data-lucide="mic" class="w-6 h-6"></i>
-                        </div>
-                        <span class="text-xs font-semibold text-premium-obsidian uppercase tracking-wider block">NXT Summit Panels</span>
-                        <span class="text-[10px] text-neutral-400 mt-1 max-w-[200px]">Link target to ./public/assets/images/nxt-summit.jpg later.</span>
+                    <!-- Photo Spot 2 -->
+                    <div class="overflow-hidden rounded-xl w-full h-[320px] bg-neutral-100 border border-premium-borderGray relative">
+                        <div id="nxt-slider" class="flex h-full w-full transition-transform duration-700 ease-in-out">  
+                            <div class="w-full h-full flex-shrink-0">
+                                <img src="images/panel1.png" class="w-full h-full object-cover" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22320%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23eaeaea%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2214%22 fill=%22%23666%22>NXT Panel Discussion 1</text></svg>'">
+                            </div> 
+                            <div class="w-full h-full flex-shrink-0">
+                                <img src="images/panel2.png" class="w-full h-full object-cover" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22320%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23eaeaea%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2214%22 fill=%22%23666%22>NXT Panel Discussion 2</text></svg>'">
+                            </div> 
+                            <div class="w-full h-full flex-shrink-0">
+                                <img src="images/panel3.png" class="w-full h-full object-cover" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22320%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23eaeaea%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2214%22 fill=%22%23666%22>NXT Panel Discussion 3</text></svg>'">
+                            </div> 
+                            <div class="w-full h-full flex-shrink-0">
+                                <img src="images/panel4.png" class="w-full h-full object-cover" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22320%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23eaeaea%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2214%22 fill=%22%23666%22>NXT Panel Discussion 4</text></svg>'">
+                            </div> 
+                            <div class="w-full h-full flex-shrink-0">
+                                <img src="images/panel5.png" class="w-full h-full object-cover" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22320%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23eaeaea%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2214%22 fill=%22%23666%22>NXT Panel Discussion 5</text></svg>'">
+                            </div> 
+                            <div class="w-full h-full flex-shrink-0">
+                                <img src="images/panel6.png" class="w-full h-full object-cover" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22320%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23eaeaea%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2214%22 fill=%22%23666%22>NXT Panel Discussion 6</text></svg>'">
+                            </div> 
+                        </div> 
+                        <div class="absolute bottom-3 left-3 bg-premium-obsidian/80 text-white text-[9px] uppercase tracking-widest py-1 px-2 rounded">Bharat Mandapam Panel</div>
                     </div>
 
-                    <div class="border-2 border-dashed border-premium-borderGray bg-premium-lightGray p-8 rounded flex flex-col items-center justify-center text-center aspect-[4/3] group hover:border-premium-gold transition-colors duration-300">
-                        <div class="w-12 h-12 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-400 group-hover:text-premium-gold group-hover:bg-amber-50 transition-colors mb-4">
-                            <i data-lucide="users-2" class="w-6 h-6"></i>
+                    <!-- Photo Spot 3 -->
+                    <div class="overflow-hidden rounded-xl w-full h-[320px] bg-neutral-100 border border-premium-borderGray relative">
+                        <div id="community-slider" class="flex h-full w-full transition-transform duration-700 ease-in-out"> 
+                            <div class="w-full h-full flex-shrink-0">
+                                <img src="images/community1.png" class="w-full h-full object-cover" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22320%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23eaeaea%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2214%22 fill=%22%23666%22>Community Assembly 1</text></svg>'">
+                            </div> 
+                            <div class="w-full h-full flex-shrink-0">
+                                <img src="images/community2.png" class="w-full h-full object-cover" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22320%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23eaeaea%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2214%22 fill=%22%23666%22>Community Assembly 2</text></svg>'">
+                            </div> 
+                            <div class="w-full h-full flex-shrink-0">
+                                <img src="images/community3.png" class="w-full h-full object-cover" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22320%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23eaeaea%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2214%22 fill=%22%23666%22>Community Assembly 3</text></svg>'">
+                            </div> 
+                            <div class="w-full h-full flex-shrink-0">
+                                <img src="images/community4.png" class="w-full h-full object-cover" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22320%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23eaeaea%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2214%22 fill=%22%23666%22>Community Assembly 4</text></svg>'">
+                            </div> 
+                            <div class="w-full h-full flex-shrink-0">
+                                <img src="images/community5.png" class="w-full h-full object-cover" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22320%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23eaeaea%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2214%22 fill=%22%23666%22>Community Assembly 5</text></svg>'">
+                            </div> 
+                            <div class="w-full h-full flex-shrink-0">
+                                <img src="images/community6.png" class="w-full h-full object-cover" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22320%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23eaeaea%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2214%22 fill=%22%23666%22>Community Assembly 6</text></svg>'">
+                            </div>
                         </div>
-                        <span class="text-xs font-semibold text-premium-obsidian uppercase tracking-wider block">Grassroots Community Meetings</span>
-                        <span class="text-[10px] text-neutral-400 mt-1 max-w-[200px]">Link target to ./public/assets/images/chennai-cup.jpg later.</span>
+                        <div class="absolute bottom-3 left-3 bg-premium-obsidian/80 text-white text-[9px] uppercase tracking-widest py-1 px-2 rounded">Chennai Grassroots</div>
                     </div>
+
                 </div>
             </div>
         </section>
     </main>
 
-
+    <!-- ================= PAGE 2: ECOSYSTEM PORTFOLIO ================= -->
     <section id="page-portfolio" class="page-view py-20 min-h-screen">
         <div class="max-w-7xl mx-auto px-6">
             <div class="max-w-3xl mb-16">
@@ -247,11 +383,12 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Venture Card 1 -->
                 <div class="bg-white border border-premium-borderGray p-8 rounded hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between mb-6">
-                            <div class="w-12 h-12 bg-premium-lightGray flex items-center justify-center border border-premium-borderGray">
-                                <i data-lucide="award" class="w-6 h-6 text-premium-gold"></i>
+                            <div class="w-14 h-14 overflow-hidden border border-premium-borderGray rounded">
+                                <img src="zarx-esports-forum.jpeg" alt="ZARX Esports Forum" class="w-full h-full object-cover" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2256%22 height=%2256%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23eee%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2210%22 fill=%22%23666%22>ZARX Esports</text></svg>'">
                             </div>
                             <span class="text-[10px] tracking-widest uppercase bg-premium-obsidian text-white px-2.5 py-1 font-bold">Founder</span>
                         </div>
@@ -267,11 +404,12 @@
                     </div>
                 </div>
 
+                <!-- Venture Card 2 -->
                 <div class="bg-white border border-premium-borderGray p-8 rounded hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between mb-6">
-                            <div class="w-12 h-12 bg-premium-lightGray flex items-center justify-center border border-premium-borderGray">
-                                <i data-lucide="shield" class="w-6 h-6 text-premium-gold"></i>
+                            <div class="w-14 h-14 overflow-hidden border border-premium-borderGray rounded bg-black">
+                                <img src="zarx-tech-logo.png" alt="ZARX Technologies" class="w-full h-full object-cover" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2256%22 height=%2256%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23eee%22/><text x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22sans-serif%22 font-size=%2210%22 fill=%22%23666%22>ZARX Tech</text></svg>'">
                             </div>
                             <span class="text-[10px] tracking-widest uppercase bg-premium-obsidian text-white px-2.5 py-1 font-bold">Managing Director</span>
                         </div>
@@ -287,10 +425,27 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Empty slots inside Portfolio page -->
+            <div class="mt-16 pt-16 border-t border-premium-borderGray">
+                <h3 class="text-xs uppercase tracking-superWide text-premium-gold font-bold mb-8">Ecosystem Visual Artifacts</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="border-2 border-dashed border-premium-borderGray p-12 rounded bg-white flex flex-col items-center justify-center text-center group hover:border-premium-gold transition-all duration-300">
+                        <i data-lucide="layout" class="w-8 h-8 text-neutral-400 group-hover:text-premium-gold mb-3 transition-colors"></i>
+                        <span class="text-xs font-semibold text-premium-obsidian uppercase">ZARX Competitive Portal Preview</span>
+                        <span class="text-[10px] text-neutral-400 mt-1 max-w-sm">Placeholder to render system screenshots, dashboard panels or bracket pipelines manually.</span>
+                    </div>
+                    <div class="border-2 border-dashed border-premium-borderGray p-12 rounded bg-white flex flex-col items-center justify-center text-center group hover:border-premium-gold transition-all duration-300">
+                        <i data-lucide="presentation" class="w-8 h-8 text-neutral-400 group-hover:text-premium-gold mb-3 transition-colors"></i>
+                        <span class="text-xs font-semibold text-premium-obsidian uppercase">NXT Conclave Presentations</span>
+                        <span class="text-[10px] text-neutral-400 mt-1 max-w-sm">Spot reserved to showcase panels with leading athletes and policymakers at Bharat Mandapam.</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-
+    <!-- ================= PAGE 3: MILESTONES ================= -->
     <section id="page-experience" class="page-view py-20 min-h-screen">
         <div class="max-w-7xl mx-auto px-6">
             <div class="max-w-3xl mb-16">
@@ -303,6 +458,7 @@
 
             <div class="relative border-l border-neutral-200 pl-8 ml-4 md:ml-24 space-y-12">
                 
+                <!-- Event 1: NXT Conclave -->
                 <div class="relative">
                     <span class="hidden md:flex absolute -left-32 top-1 text-right flex-col">
                         <span class="text-xs font-bold text-premium-obsidian">March 2026</span>
@@ -321,6 +477,7 @@
                     </div>
                 </div>
 
+                <!-- Event 2: Goldman Sachs -->
                 <div class="relative">
                     <span class="hidden md:flex absolute -left-32 top-1 text-right flex-col">
                         <span class="text-xs font-bold text-premium-obsidian">2025</span>
@@ -339,6 +496,7 @@
                     </div>
                 </div>
 
+                <!-- Event 3: Free Fire Community Lead -->
                 <div class="relative">
                     <span class="hidden md:flex absolute -left-32 top-1 text-right flex-col">
                         <span class="text-xs font-bold text-premium-obsidian">2025 - Present</span>
@@ -357,6 +515,7 @@
                     </div>
                 </div>
 
+                <!-- Event 4: HCLTech -->
                 <div class="relative">
                     <span class="hidden md:flex absolute -left-32 top-1 text-right flex-col">
                         <span class="text-xs font-bold text-premium-obsidian">2024 - 2025</span>
@@ -375,6 +534,7 @@
                     </div>
                 </div>
 
+                <!-- Event 5: Jain University Student Council -->
                 <div class="relative">
                     <span class="hidden md:flex absolute -left-32 top-1 text-right flex-col">
                         <span class="text-xs font-bold text-premium-obsidian">2021 - 2024</span>
@@ -397,7 +557,7 @@
         </div>
     </section>
 
-
+    <!-- ================= PAGE 4: STRATEGIC PLAYBOOKS ================= -->
     <section id="page-frameworks" class="page-view py-20 min-h-screen">
         <div class="max-w-7xl mx-auto px-6">
             <div class="max-w-3xl mb-16">
@@ -409,6 +569,7 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Playbook 1 -->
                 <div class="bg-white border border-premium-borderGray p-8 rounded flex flex-col justify-between hover:shadow-md transition-shadow">
                     <div>
                         <div class="w-12 h-12 bg-premium-lightGray flex items-center justify-center border border-premium-borderGray mb-6">
@@ -422,6 +583,7 @@
                     <span class="text-[10px] uppercase tracking-widest text-premium-gold font-bold mt-6 block">SOP 01: Pipeline Security</span>
                 </div>
 
+                <!-- Playbook 2 -->
                 <div class="bg-white border border-premium-borderGray p-8 rounded flex flex-col justify-between hover:shadow-md transition-shadow">
                     <div>
                         <div class="w-12 h-12 bg-premium-lightGray flex items-center justify-center border border-premium-borderGray mb-6">
@@ -435,6 +597,7 @@
                     <span class="text-[10px] uppercase tracking-widest text-premium-gold font-bold mt-6 block">SOP 02: Brand Symbiosis</span>
                 </div>
 
+                <!-- Playbook 3 -->
                 <div class="bg-white border border-premium-borderGray p-8 rounded flex flex-col justify-between hover:shadow-md transition-shadow">
                     <div>
                         <div class="w-12 h-12 bg-premium-lightGray flex items-center justify-center border border-premium-borderGray mb-6">
@@ -451,11 +614,12 @@
         </div>
     </section>
 
-
+    <!-- ================= PAGE 5: PARTNERSHIP ROI MODELER ================= -->
     <section id="page-modeler" class="page-view py-20 min-h-screen">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 
+                <!-- Information Pane (Left) -->
                 <div class="lg:col-span-5 space-y-6">
                     <span class="text-xs uppercase tracking-superWide text-premium-gold font-bold block">Quantitative Asset Evaluation</span>
                     <h2 class="editorial-title text-4xl text-premium-obsidian font-normal">Strategic Sponsorship & Reach Modeler</h2>
@@ -473,6 +637,7 @@
                     </div>
                 </div>
 
+                <!-- Live Modeler Box (Right) -->
                 <div class="lg:col-span-7 bg-white border border-premium-borderGray p-8 rounded shadow-sm">
                     <h3 class="text-xs uppercase tracking-widest text-premium-obsidian font-bold mb-6 flex items-center justify-between">
                         <span>Dynamic Budget Parameter Studio</span>
@@ -480,10 +645,11 @@
                     </h3>
 
                     <div class="space-y-8">
+                        <!-- Budget slider input -->
                         <div class="space-y-2">
                             <div class="flex justify-between items-center text-xs">
                                 <label for="budget-range" class="font-semibold text-premium-obsidian">Allocated Partnership Budget</label>
-                                <span id="budget-val-display" class="text-premium-gold font-bold">₹5,0,000</span>
+                                <span id="budget-val-display" class="text-premium-gold font-bold">₹5,00,000</span>
                             </div>
                             <input type="range" id="budget-range" min="100000" max="5000000" step="50000" value="500000" 
                                    class="w-full h-1 bg-neutral-200 rounded-lg appearance-none cursor-pointer accent-premium-gold"
@@ -494,6 +660,7 @@
                             </div>
                         </div>
 
+                        <!-- Active vector buttons -->
                         <div class="space-y-2">
                             <label class="block text-xs font-semibold text-premium-obsidian mb-2">Campaign Activation Target</label>
                             <div class="grid grid-cols-3 gap-3">
@@ -509,6 +676,7 @@
                             </div>
                         </div>
 
+                        <!-- Output results panel -->
                         <div class="bg-premium-lightGray border border-premium-borderGray p-6 rounded space-y-4">
                             <h4 class="text-[10px] tracking-widest uppercase font-bold text-neutral-400">Projected Value Forecast</h4>
                             <div class="grid grid-cols-2 gap-4">
@@ -539,11 +707,12 @@
         </div>
     </section>
 
-
+    <!-- ================= PAGE 6: DIRECT BRIEFING CONTACT ================= -->
     <section id="page-contact" class="page-view py-20 min-h-screen">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
                 
+                <!-- Information Block -->
                 <div class="lg:col-span-5 space-y-8">
                     <div>
                         <span class="text-xs uppercase tracking-superWide text-premium-gold font-bold block mb-3">Get in Touch</span>
@@ -579,8 +748,10 @@
                     </div>
                 </div>
 
+                <!-- Form Section -->
                 <div class="lg:col-span-7 bg-white border border-premium-borderGray p-8 rounded shadow-sm relative">
                     
+                    <!-- Simulated success view -->
                     <div id="contact-success-view" class="hidden absolute inset-0 bg-white z-10 flex flex-col items-center justify-center p-8 text-center space-y-4">
                         <div class="w-12 h-12 rounded-full bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600">
                             <i data-lucide="check-circle" class="w-6 h-6"></i>
@@ -636,7 +807,7 @@
         </div>
     </section>
 
-
+    <!-- PREMIUM FOOTER -->
     <footer class="bg-premium-obsidian text-white py-12 border-t border-neutral-900">
         <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0 text-xs">
             <div class="flex flex-col space-y-1 text-center md:text-left">
@@ -655,8 +826,127 @@
         </div>
     </footer>
 
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="./src/js/modeler.js"></script>
-    <script src="./src/js/main.js"></script>
+
+    <!-- INTERACTIVE SPA & CONTROLLER JAVASCRIPT -->
+    <script>
+        // Init Lucide Icons on load
+        window.onload = function() {
+            lucide.createIcons();
+            calculateMetrics();
+        }
+
+        // Drawer Menu Actions
+        function toggleMenu() {
+            const drawer = document.getElementById('navigation-drawer');
+            const icon = document.getElementById('menu-icon');
+            if (drawer.classList.contains('-translate-x-full')) {
+                drawer.classList.remove('-translate-x-full');
+                icon.setAttribute('data-lucide', 'x');
+            } else {
+                drawer.classList.add('-translate-x-full');
+                icon.setAttribute('data-lucide', 'menu');
+            }
+            lucide.createIcons();
+        }
+
+        function navigateTo(pageId) {
+            document.querySelectorAll('.page-view').forEach(view => {
+                view.classList.remove('active');
+            });
+            const targetPage = document.getElementById('page-' + pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+            const drawer = document.getElementById('navigation-drawer');
+            if (!drawer.classList.contains('-translate-x-full')) {
+                toggleMenu();
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Optimized Image Carousel Implementation
+        function initSlider(sliderId, intervalTime) {
+            const slider = document.getElementById(sliderId);
+            if (!slider) return;
+            
+            let currentIndex = 0;
+            const totalImages = slider.children.length;
+
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % totalImages;
+                slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }, intervalTime);
+        }
+
+        // Initialize carousels once DOM Content loads
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            initSlider('event-slider', 3000);
+            initSlider('nxt-slider', 3500);
+            initSlider('community-slider', 4000);
+        });
+
+        // Interactive Modeler Calculator Engine
+        let selectedMode = 'esports';
+
+        function setMode(mode) {
+            selectedMode = mode;
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.classList.remove('active', 'border-premium-gold', 'bg-white', 'text-premium-obsidian');
+                btn.classList.add('border-premium-borderGray', 'bg-transparent', 'text-neutral-500');
+            });
+
+            const activeBtn = document.getElementById(`mode-${mode}`);
+            activeBtn.classList.add('active', 'border-premium-gold', 'bg-white', 'text-premium-obsidian');
+            activeBtn.classList.remove('border-premium-borderGray', 'bg-transparent', 'text-neutral-500');
+
+            calculateMetrics();
+        }
+
+        function calculateMetrics() {
+            const budgetVal = parseInt(document.getElementById('budget-range').value);
+            document.getElementById('budget-val-display').innerText = '₹' + budgetVal.toLocaleString('en-IN');
+
+            let reachFactor = 3.0;
+            let conversionFactor = 0.075;
+            let yieldText = '3.0x Brand Lift';
+
+            switch (selectedMode) {
+                case 'esports':
+                    reachFactor = 3.5;
+                    conversionFactor = 0.085;
+                    yieldText = '3.5x Targeted Brand Acquisition';
+                    break;
+                case 'summit':
+                    reachFactor = 1.5;
+                    conversionFactor = 0.055;
+                    yieldText = '2.0x High-Value Corporate Reach';
+                    break;
+                case 'grassroots':
+                    reachFactor = 4.0;
+                    conversionFactor = 0.12;
+                    yieldText = '4.5x High Engagement Velocity';
+                    break;
+            }
+
+            const computedReach = Math.round(budgetVal * reachFactor);
+            const computedConversions = Math.round(computedReach * conversionFactor);
+
+            document.getElementById('output-val-reach').innerText = computedReach.toLocaleString('en-IN') + '+';
+            document.getElementById('output-val-conversions').innerText = computedConversions.toLocaleString('en-IN');
+            document.getElementById('output-val-roi').innerText = yieldText;
+        }
+
+        // Contact Form Routing Simulation
+        function submitForm(event) {
+            event.preventDefault();
+            document.getElementById('contact-success-view').classList.remove('hidden');
+        }
+
+        function resetContactForm() {
+            document.getElementById('contact-submission-form').reset();
+            document.getElementById('contact-success-view').classList.add('hidden');
+        }
+    </script>
 </body>
 </html>
