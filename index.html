@@ -313,12 +313,29 @@
                     <!-- Photo Spot 2 -->
                  <div class="rounded overflow-hidden aspect-[4/3]">
 
-  <img
-    id="nxt-gallery"
-    src="images/panel1.png"
-    alt="NXT Summit Panels"
-    class="w-full h-full object-cover"
->
+  <div class="overflow-hidden rounded aspect-[4/3] relative">
+    <div id="nxt-slider" class="flex h-full transition-transform duration-700 ease-in-out">
+
+        <img src="images/panel1.jpg"
+             class="w-full h-full object-cover flex-shrink-0">
+
+        <img src="images/panel2.jpg"
+             class="w-full h-full object-cover flex-shrink-0">
+
+        <img src="images/panel3.jpg"
+             class="w-full h-full object-cover flex-shrink-0">
+
+        <img src="images/panel4.jpg"
+             class="w-full h-full object-cover flex-shrink-0">
+
+        <img src="images/panel5.jpg"
+             class="w-full h-full object-cover flex-shrink-0">
+
+        <img src="images/panel6.jpg"
+             class="w-full h-full object-cover flex-shrink-0">
+
+    </div>
+</div>
 </div>
 
 
@@ -916,24 +933,23 @@
             document.getElementById('contact-submission-form').reset();
             document.getElementById('contact-success-view').classList.add('hidden');
         }
-        const nxtImages = [
-    "images/panel1.png",
-    "images/panel2.png",
-    "images/panel3.png",
-    "images/panel4.png",
-    "images/panel5.png",
-    "images/panel6.png"
-];
+       const slider = document.getElementById("nxt-slider");
 
-let nxtIndex = 0;
+let currentSlide = 0;
+const totalSlides = 6;
 
 setInterval(() => {
-    nxtIndex = (nxtIndex + 1) % nxtImages.length;
 
-    document.getElementById("nxt-gallery").src =
-        nxtImages[nxtIndex];
+    currentSlide++;
 
-}, 1000);
+    if (currentSlide >= totalSlides) {
+        currentSlide = 0;
+    }
+
+    slider.style.transform =
+        `translateX(-${currentSlide * 100}%)`;
+
+}, 2000);
     </script>
 </body>
 </html>
