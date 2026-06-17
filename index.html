@@ -442,26 +442,38 @@
         }
 
         // Optimized Image Carousel Implementation
-        function initSlider(sliderId, intervalTime) {
-            const slider = document.getElementById(sliderId);
-            if (!slider) return;
-            
-            let currentIndex = 0;
-            const totalImages = slider.children.length;
+    function initSlider(sliderId, intervalTime) {
+    const slider = document.getElementById(sliderId);
+    if (!slider) return;
 
-            setInterval(() => {
-                currentIndex = (currentIndex + 1) % totalImages;
-                slider.style.transform = `translateX(-${currentIndex * 100}%)`;
-            }, intervalTime);
+    let index = 0;
+    const slides = Array.from(slider.children);
+
+    // 🔁 Clone first slide and append (key trick)
+    const firstClone = slides[0].cloneNode(true);
+    slider.appendChild(firstClone);
+
+    const total = slides.length + 1;
+
+    function move() {
+        index++;
+
+        slider.style.transition = "transform 700ms ease-in-out";
+        slider.style.transform = `translateX(-${index * 100}%)`;
+
+        // 🧠 when reaching clone → reset instantly without animation
+        if (index === total - 1) {
+            setTimeout(() => {
+                slider.style.transition = "none";
+                index = 0;
+                slider.style.transform = `translateX(0%)`;
+            }, 700);
         }
+    }
 
-        // Initialize carousels once DOM Content loads
-        document.addEventListener('DOMContentLoaded', () => {
-            lucide.createIcons();
-            initSlider('event-slider', 3000);
-            initSlider('nxt-slider', 3500);
-            initSlider('community-slider', 4000);
-        });
+    setInterval(move, intervalTime);
+}
+        
     </script>
 </body>
 </html>
