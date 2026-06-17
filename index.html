@@ -313,12 +313,12 @@
                     <!-- Photo Spot 2 -->
                  <div class="rounded overflow-hidden aspect-[4/3]">
 
-    <img
-        src="images/nxt-panel.png"
-        alt="NXT Summit Panels"
-        class="w-full h-full object-cover"
-    >
-
+  <img
+    id="nxt-gallery"
+    src="images/panel1.jpg"
+    alt="NXT Summit Panels"
+    class="w-full h-full object-cover"
+>
 </div>
 
 
@@ -916,6 +916,24 @@
             document.getElementById('contact-submission-form').reset();
             document.getElementById('contact-success-view').classList.add('hidden');
         }
+        const nxtImages = [
+    "images/panel1.jpg",
+    "images/panel2.jpg",
+    "images/panel3.jpg",
+    "images/panel4.jpg",
+    "images/panel5.jpg",
+    "images/panel6.jpg"
+];
+
+let nxtIndex = 0;
+
+setInterval(() => {
+    nxtIndex = (nxtIndex + 1) % nxtImages.length;
+
+    document.getElementById("nxt-gallery").src =
+        nxtImages[nxtIndex];
+
+}, 1000);
     </script>
 </body>
 </html>
