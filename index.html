@@ -341,16 +341,18 @@
 
 
                     <!-- Photo Spot 3 -->
-               <div class="rounded overflow-hidden aspect-[4/3]">
-    <img src="images/Community.jpeg"
-         class="w-full h-full object-cover"
-         alt="Community Meeting">
-</div>
+       <div class="overflow-hidden rounded aspect-[4/3] relative">
+    <div id="community-slider" class="flex h-full transition-transform duration-700 ease-in-out">
 
-</div> <!-- end grid -->
-</div> <!-- end max-w-7xl -->
-</section> <!-- end gallery section -->
-</main> <!-- end page-home -->
+        <img src="images/community1.png" class="w-full h-full object-cover flex-shrink-0">
+        <img src="images/community2.png" class="w-full h-full object-cover flex-shrink-0">
+        <img src="images/community3.png" class="w-full h-full object-cover flex-shrink-0">
+        <img src="images/community4.png" class="w-full h-full object-cover flex-shrink-0">
+        <img src="images/community5.png" class="w-full h-full object-cover flex-shrink-0">
+        <img src="images/community6.png" class="w-full h-full object-cover flex-shrink-0">
+
+    </div>
+</div>
 
     <!-- ================= PAGE 2: ECOSYSTEM PORTFOLIO ================= -->
     <section id="page-portfolio" class="page-view py-20 min-h-screen">
@@ -949,6 +951,23 @@ setInterval(() => {
 
     slider.style.transform =
         `translateX(-${currentSlide * 100}%)`;
+
+}, 2000);
+const eventSlider = document.getElementById("event-slider");
+
+let eventIndex = 0;
+const eventTotal = 6;
+
+setInterval(() => {
+
+    eventIndex++;
+
+    if (eventIndex >= eventTotal) {
+        eventIndex = 0;
+    }
+
+    eventSlider.style.transform =
+        `translateX(-${eventIndex * 100}%)`;
 
 }, 2000);
     </script>
