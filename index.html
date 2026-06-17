@@ -304,46 +304,50 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <!-- Photo Spot 1 -->
-                      <div class="rounded overflow-hidden aspect-[4/3]">
+                    <div class="overflow-hidden rounded aspect-[4/3] relative w-full">
 
-                     <img src="images/arena.png" 
-                     class="w-full h-full object-cover">
+    <div id="event-slider"
+         class="flex h-full transition-transform duration-700 ease-in-out">
 
-                    </div>
-                    <!-- Photo Spot 2 -->
-                 <div class="rounded overflow-hidden aspect-[4/3]">
+        <img src="images/event1.png" class="w-full h-full object-cover flex-shrink-0">
+        <img src="images/event2.png" class="w-full h-full object-cover flex-shrink-0">
+        <img src="images/event3.png" class="w-full h-full object-cover flex-shrink-0">
+        <img src="images/event4.png" class="w-full h-full object-cover flex-shrink-0">
+  
 
-  <div class="overflow-hidden rounded aspect-[4/3] relative">
-    <div id="nxt-slider" class="flex h-full transition-transform duration-700 ease-in-out">
-
-        <img src="images/panel1.png"
-             class="w-full h-full object-cover flex-shrink-0">
-
-        <img src="images/panel2.png"
-             class="w-full h-full object-cover flex-shrink-0">
-
-        <img src="images/panel3.png
-        "
-             class="w-full h-full object-cover flex-shrink-0">
-
-        <img src="images/panel4.png"
-             class="w-full h-full object-cover flex-shrink-0">
-
-        <img src="images/panel5.png"
-             class="w-full h-full object-cover flex-shrink-0">
-
-        <img src="images/panel6.png"
-             class="w-full h-full object-cover flex-shrink-0">
+        <!-- Duplicate first image -->
+        <img src="images/event1.png" class="w-full h-full object-cover flex-shrink-0">
 
     </div>
+
 </div>
+                    <!-- Photo Spot 2 -->
+   <div class="overflow-hidden rounded aspect-[4/3] relative w-full">
+
+    <div id="nxt-slider"
+         class="flex h-full transition-transform duration-700 ease-in-out">
+
+        <img src="images/panel1.png" class="w-full h-full object-cover flex-shrink-0">
+        <img src="images/panel2.png" class="w-full h-full object-cover flex-shrink-0">
+        <img src="images/panel3.png" class="w-full h-full object-cover flex-shrink-0">
+        <img src="images/panel4.png" class="w-full h-full object-cover flex-shrink-0">
+        <img src="images/panel5.png" class="w-full h-full object-cover flex-shrink-0">
+        <img src="images/panel6.png" class="w-full h-full object-cover flex-shrink-0">
+
+        <!-- Duplicate first image -->
+        <img src="images/panel1.png" class="w-full h-full object-cover flex-shrink-0">
+
+    </div>
+
 </div>
 
 
                     <!-- Photo Spot 3 -->
      <!-- Photo Spot 3 -->
-<div class="overflow-hidden rounded aspect-[4/3] relative">
-    <div id="community-slider" class="flex h-full transition-transform duration-700 ease-in-out">
+<div class="overflow-hidden rounded aspect-[4/3] relative w-full">
+
+    <div id="community-slider"
+         class="flex h-full transition-transform duration-700 ease-in-out">
 
         <img src="images/community1.png" class="w-full h-full object-cover flex-shrink-0">
         <img src="images/community2.png" class="w-full h-full object-cover flex-shrink-0">
@@ -352,9 +356,12 @@
         <img src="images/community5.png" class="w-full h-full object-cover flex-shrink-0">
         <img src="images/community6.png" class="w-full h-full object-cover flex-shrink-0">
 
-    </div>
-</div>
+        <!-- Duplicate first image -->
+        <img src="images/community1.png" class="w-full h-full object-cover flex-shrink-0">
 
+    </div>
+
+</div>
 </div>
 </div>
 </section>
@@ -941,21 +948,63 @@
             document.getElementById('contact-submission-form').reset();
             document.getElementById('contact-success-view').classList.add('hidden');
         }
-       const slider = document.getElementById("nxt-slider");
+        const nxtSlider = document.getElementById("nxt-slider");
 
-let currentSlide = 0;
-const totalSlides = 6;
+let nxtIndex = 0;
+const nxtTotal = 6;
 
 setInterval(() => {
 
-    currentSlide++;
+    nxtIndex++;
 
-    if (currentSlide >= totalSlides) {
-        currentSlide = 0;
+    nxtSlider.style.transition = "transform 0.7s ease-in-out";
+    nxtSlider.style.transform =
+        `translateX(-${nxtIndex * 100}%)`;
+
+    if (nxtIndex === nxtTotal) {
+
+        setTimeout(() => {
+
+            nxtSlider.style.transition = "none";
+
+            nxtIndex = 0;
+
+            nxtSlider.style.transform =
+                "translateX(0)";
+
+        }, 700);
+
     }
 
-    slider.style.transform =
-        `translateX(-${currentSlide * 100}%)`;
+}, 2000);
+const communitySlider = document.getElementById("community-slider");
+
+let communityIndex = 0;
+const communityTotal = 6;
+
+setInterval(() => {
+
+    communityIndex++;
+
+    communitySlider.style.transition = "transform 0.7s ease-in-out";
+
+    communitySlider.style.transform =
+        `translateX(-${communityIndex * 100}%)`;
+
+    if (communityIndex === communityTotal) {
+
+        setTimeout(() => {
+
+            communitySlider.style.transition = "none";
+
+            communityIndex = 0;
+
+            communitySlider.style.transform =
+                "translateX(0)";
+
+        }, 700);
+
+    }
 
 }, 2000);
 const eventSlider = document.getElementById("event-slider");
@@ -967,14 +1016,28 @@ setInterval(() => {
 
     eventIndex++;
 
-    if (eventIndex >= eventTotal) {
-        eventIndex = 0;
-    }
+    eventSlider.style.transition = "transform 0.7s ease-in-out";
 
     eventSlider.style.transform =
         `translateX(-${eventIndex * 100}%)`;
 
+    if (eventIndex === eventTotal) {
+
+        setTimeout(() => {
+
+            eventSlider.style.transition = "none";
+
+            eventIndex = 0;
+
+            eventSlider.style.transform =
+                "translateX(0)";
+
+        }, 700);
+
+    }
+
 }, 2000);
+
     </script>
 </body>
 </html>
