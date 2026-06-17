@@ -1716,11 +1716,7 @@ document.querySelectorAll('.page-view').forEach(view => {
 
 view.classList.remove('active');
 
-
-
 });
-
-
 
 const targetPage = document.getElementById('page-' + pageId);
 
@@ -1728,19 +1724,11 @@ const targetPage = document.getElementById('page-' + pageId);
 
 if (targetPage) {
 
-
-
 targetPage.classList.add('active');
-
-
 
 }
 
-
-
 const drawer = document.getElementById('navigation-drawer');
-
-
 
 if (!drawer.classList.contains('-translate-x-full')) {
 
@@ -1748,11 +1736,7 @@ if (!drawer.classList.contains('-translate-x-full')) {
 
 toggleMenu();
 
-
-
 }
-
-
 
 window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -1788,10 +1772,6 @@ const totalImages = slider.children.length;
 
 
 
-
-
-
-
 setInterval(() => {
 
 
@@ -1809,10 +1789,6 @@ slider.style.transform = `translateX(-${currentIndex * 100}%)`;
 
 
 }
-
-
-
-
 
 
 
