@@ -26,17 +26,64 @@
 
     <script src="https://unpkg.com/lucide@latest"></script>
 
-  / Continuous Seamless Ticker Animation /
-@keyframes continuousScroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
+    <script>
 
-.animate-ticker {
-    display: flex;
-    width: max-content;
-    animation: continuousScroll linear infinite;
-}
+        tailwind.config = {
+
+            theme: {
+
+                extend: {
+
+                    fontFamily: {
+
+                        sans: ['Inter', 'sans-serif'],
+
+                        serif: ['Playfair Display', 'serif'],
+
+                    },
+
+                    colors: {
+
+                        premium: {
+
+                            obsidian: '#0A0A0C',
+
+                            slate: '#1E293B',
+
+                            charcoal: '#334155',
+
+                            cream: '#FAF9F6',
+
+                            gold: '#B89047',
+
+                            mutedGold: '#C5A880',
+
+                            accentBlue: '#0F4C81',
+
+                            lightGray: '#F8FAFC',
+
+                            borderGray: '#E2E8F0',
+
+                        }
+
+                    },
+
+                    letterSpacing: {
+
+                        superWide: '0.25em',
+
+                        executive: '0.15em',
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    </script>
+
     <style>
 
         body {
@@ -777,67 +824,110 @@
 
     <!-- Global Navigation & Carousel Controls Script -->
 
-   <!-- Global Navigation & Continuous Loop Script -->
-    <!-- Global Navigation & Continuous Loop Script -->
     <script>
+
         // Drawer Menu Actions
+
         function toggleMenu() {
+
             const drawer = document.getElementById('navigation-drawer');
+
             const icon = document.getElementById('menu-icon');
+
             if (drawer.classList.contains('-translate-x-full')) {
+
                 drawer.classList.remove('-translate-x-full');
+
                 icon.setAttribute('data-lucide', 'x');
+
             } else {
+
                 drawer.classList.add('-translate-x-full');
+
                 icon.setAttribute('data-lucide', 'menu');
+
             }
+
             lucide.createIcons();
+
         }
+
+
 
         function navigateTo(pageId) {
+
             document.querySelectorAll('.page-view').forEach(view => {
+
                 view.classList.remove('active');
+
             });
+
             const targetPage = document.getElementById('page-' + pageId);
+
             if (targetPage) {
+
                 targetPage.classList.add('active');
+
             }
+
             const drawer = document.getElementById('navigation-drawer');
+
             if (!drawer.classList.contains('-translate-x-full')) {
+
                 toggleMenu();
+
             }
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
+
         }
 
-        // True Infinite Conveyor Ticker Configuration
-        function makeSliderSeamless(sliderId, speedInSeconds) {
+
+
+        // Optimized Image Carousel Implementation
+
+        function initSlider(sliderId, intervalTime) {
+
             const slider = document.getElementById(sliderId);
-            if (!slider || slider.children.length === 0) return;
 
-            // Remove the default Tailwind transition layout classes
-            slider.className = "animate-ticker";
-            slider.style.animationDuration = `${speedInSeconds}s`;
+            if (!slider) return;
 
-            // Clone the existing items to create a perfect mirror backup loop
-            const originalItems = Array.from(slider.children);
-            originalItems.forEach(item => {
-                // Ensure every image child fits the parent frame width perfectly
-                item.style.width = "320px"; // Adjust this if you want wider/narrower blocks
-                const clone = item.cloneNode(true);
-                slider.appendChild(clone);
-            });
+            
+
+            let currentIndex = 0;
+
+            const totalImages = slider.children.length;
+
+
+
+            setInterval(() => {
+
+                currentIndex = (currentIndex + 1) % totalImages;
+
+                slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+            }, intervalTime);
+
         }
+
+
 
         // Initialize carousels once DOM Content loads
+
         document.addEventListener('DOMContentLoaded', () => {
+
             lucide.createIcons();
-            
-            // Set different speeds (in seconds) for each track to look dynamic
-            makeSliderSeamless('event-slider', 15);
-            makeSliderSeamless('nxt-slider', 20);
-            makeSliderSeamless('community-slider', 18);
+
+            initSlider('event-slider', 3000);
+
+            initSlider('nxt-slider', 3500);
+
+            initSlider('community-slider', 4000);
+
         });
+
     </script>
+
 </body>
 
-</html>
+</html>         
