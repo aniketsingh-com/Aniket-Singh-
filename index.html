@@ -26,64 +26,17 @@
 
     <script src="https://unpkg.com/lucide@latest"></script>
 
-    <script>
+  / Continuous Seamless Ticker Animation /
+@keyframes continuousScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
 
-        tailwind.config = {
-
-            theme: {
-
-                extend: {
-
-                    fontFamily: {
-
-                        sans: ['Inter', 'sans-serif'],
-
-                        serif: ['Playfair Display', 'serif'],
-
-                    },
-
-                    colors: {
-
-                        premium: {
-
-                            obsidian: '#0A0A0C',
-
-                            slate: '#1E293B',
-
-                            charcoal: '#334155',
-
-                            cream: '#FAF9F6',
-
-                            gold: '#B89047',
-
-                            mutedGold: '#C5A880',
-
-                            accentBlue: '#0F4C81',
-
-                            lightGray: '#F8FAFC',
-
-                            borderGray: '#E2E8F0',
-
-                        }
-
-                    },
-
-                    letterSpacing: {
-
-                        superWide: '0.25em',
-
-                        executive: '0.15em',
-
-                    }
-
-                }
-
-            }
-
-        }
-
-    </script>
-
+.animate-ticker {
+    display: flex;
+    width: max-content;
+    animation: continuousScroll linear infinite;
+}
     <style>
 
         body {
@@ -824,6 +777,7 @@
 
     <!-- Global Navigation & Carousel Controls Script -->
 
+   <!-- Global Navigation & Continuous Loop Script -->
     <script>
         // Drawer Menu Actions
         function toggleMenu() {
@@ -854,44 +808,33 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Infinite Continuous Loop Slider Implementation
-        function initSlider(sliderId, intervalTime) {
+        // True Infinite Conveyor Ticker Configuration
+        function makeSliderSeamless(sliderId, speedInSeconds) {
             const slider = document.getElementById(sliderId);
             if (!slider || slider.children.length === 0) return;
-            
-            // 1. Clone the first slide and append it to the end for a seamless transition
-            const firstClone = slider.children[0].cloneNode(true);
-            slider.appendChild(firstClone);
-            
-            const totalSlides = slider.children.length; // Includes the newly cloned image
-            let currentIndex = 0;
 
-            setInterval(() => {
-                currentIndex++;
-                
-                // Enable smooth sliding animation
-                slider.style.transition = "transform 0.7s ease-in-out";
-                slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+            // Remove the default Tailwind transition layout classes
+            slider.className = "animate-ticker";
+            slider.style.animationDuration = `${speedInSeconds}s`;
 
-                // If we have just transitioned onto the cloned first image...
-                if (currentIndex === totalSlides - 1) {
-                    // Wait exactly for the 700ms slide transition to finish
-                    setTimeout(() => {
-                        // Secretly turn off transition physics and snap back to the actual 1st image
-                        slider.style.transition = "none";
-                        currentIndex = 0;
-                        slider.style.transform = `translateX(0%)`;
-                    }, 700); // Matches the 700ms (duration-700) tailwind speed
-                }
-            }, intervalTime);
+            // Clone the existing items to create a perfect mirror backup loop
+            const originalItems = Array.from(slider.children);
+            originalItems.forEach(item => {
+                // Ensure every image child fits the parent frame width perfectly
+                item.style.width = "320px"; // Adjust this if you want wider/narrower blocks
+                const clone = item.cloneNode(true);
+                slider.appendChild(clone);
+            });
         }
 
         // Initialize carousels once DOM Content loads
         document.addEventListener('DOMContentLoaded', () => {
             lucide.createIcons();
-            initSlider('event-slider', 3000);
-            initSlider('nxt-slider', 3500);
-            initSlider('community-slider', 4000);
+            
+            // Set different speeds (in seconds) for each track to look dynamic
+            makeSliderSeamless('event-slider', 2);
+            makeSliderSeamless('nxt-slider', 2);
+            makeSliderSeamless('community-slider', 2);
         });
     </script>
 
