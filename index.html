@@ -825,107 +825,74 @@
     <!-- Global Navigation & Carousel Controls Script -->
 
     <script>
-
         // Drawer Menu Actions
-
         function toggleMenu() {
-
             const drawer = document.getElementById('navigation-drawer');
-
             const icon = document.getElementById('menu-icon');
-
             if (drawer.classList.contains('-translate-x-full')) {
-
                 drawer.classList.remove('-translate-x-full');
-
                 icon.setAttribute('data-lucide', 'x');
-
             } else {
-
                 drawer.classList.add('-translate-x-full');
-
                 icon.setAttribute('data-lucide', 'menu');
-
             }
-
             lucide.createIcons();
-
         }
-
-
 
         function navigateTo(pageId) {
-
             document.querySelectorAll('.page-view').forEach(view => {
-
                 view.classList.remove('active');
-
             });
-
             const targetPage = document.getElementById('page-' + pageId);
-
             if (targetPage) {
-
                 targetPage.classList.add('active');
-
             }
-
             const drawer = document.getElementById('navigation-drawer');
-
             if (!drawer.classList.contains('-translate-x-full')) {
-
                 toggleMenu();
-
             }
-
             window.scrollTo({ top: 0, behavior: 'smooth' });
-
         }
 
-
-
-        // Optimized Image Carousel Implementation
-
+        // Infinite Continuous Loop Slider Implementation
         function initSlider(sliderId, intervalTime) {
-
             const slider = document.getElementById(sliderId);
-
-            if (!slider) return;
-
+            if (!slider || slider.children.length === 0) return;
             
-
+            // 1. Clone the first slide and append it to the end for a seamless transition
+            const firstClone = slider.children[0].cloneNode(true);
+            slider.appendChild(firstClone);
+            
+            const totalSlides = slider.children.length; // Includes the newly cloned image
             let currentIndex = 0;
 
-            const totalImages = slider.children.length;
-
-
-
             setInterval(() => {
-
-                currentIndex = (currentIndex + 1) % totalImages;
-
+                currentIndex++;
+                
+                // Enable smooth sliding animation
+                slider.style.transition = "transform 0.7s ease-in-out";
                 slider.style.transform = `translateX(-${currentIndex * 100}%)`;
 
+                // If we have just transitioned onto the cloned first image...
+                if (currentIndex === totalSlides - 1) {
+                    // Wait exactly for the 700ms slide transition to finish
+                    setTimeout(() => {
+                        // Secretly turn off transition physics and snap back to the actual 1st image
+                        slider.style.transition = "none";
+                        currentIndex = 0;
+                        slider.style.transform = `translateX(0%)`;
+                    }, 700); // Matches the 700ms (duration-700) tailwind speed
+                }
             }, intervalTime);
-
         }
 
-
-
         // Initialize carousels once DOM Content loads
-
         document.addEventListener('DOMContentLoaded', () => {
-
             lucide.createIcons();
-
             initSlider('event-slider', 3000);
-
             initSlider('nxt-slider', 3500);
-
             initSlider('community-slider', 4000);
-
         });
-
     </script>
 
 </body>
