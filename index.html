@@ -53,197 +53,213 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 
 
+<style>
+   body {
 
 
-    <style>
 
+font-family: 'Inter', sans-serif;
 
 
-        body {
 
+background-color: #FAF9F6; /* Premium soft cream background */
 
 
-            font-family: 'Inter', sans-serif;
 
+color: #0A0A0C;
 
 
-            background-color: #FAF9F6; /* Premium soft cream background */
 
+transition: background-color 0.3s ease;
 
 
-            color: #0A0A0C;
 
+}
 
 
-            transition: background-color 0.3s ease;
 
+.editorial-title {
 
 
-        }
 
+font-family: 'Playfair Display', serif;
 
 
-        .editorial-title {
 
+}
 
 
-            font-family: 'Playfair Display', serif;
 
+.blur-backdrop {
 
 
-        }
 
+backdrop-filter: blur(12px);
 
 
-        .blur-backdrop {
 
+-webkit-backdrop-filter: blur(12px);
 
 
-            backdrop-filter: blur(12px);
 
+}
 
 
-            -webkit-backdrop-filter: blur(12px);
 
+/* Custom Scrollbar */
 
 
-        }
 
+::-webkit-scrollbar {
 
 
-        /* Custom Scrollbar */
 
+width: 6px;
 
 
-        ::-webkit-scrollbar {
 
+}
 
 
-            width: 6px;
 
+::-webkit-scrollbar-track {
 
 
-        }
 
+background: #FAF9F6;
 
 
-        ::-webkit-scrollbar-track {
 
+}
 
 
-            background: #FAF9F6;
 
+::-webkit-scrollbar-thumb {
 
 
-        }
 
+background: #D1D5DB;
 
 
-        ::-webkit-scrollbar-thumb {
 
+border-radius: 3px;
 
 
-            background: #D1D5DB;
 
+}
 
 
-            border-radius: 3px;
 
+::-webkit-scrollbar-thumb:hover {
 
 
-        }
 
+background: #9CA3AF;
 
 
-        ::-webkit-scrollbar-thumb:hover {
 
+}
 
 
-            background: #9CA3AF;
 
+/* Subtle Grid Pattern Overlay */
 
 
-        }
 
+.bg-grid-pattern {
 
 
-        /* Subtle Grid Pattern Overlay */
 
+background-size: 40px 40px;
 
 
-        .bg-grid-pattern {
 
+background-image:
 
 
-            background-size: 40px 40px;
 
+linear-gradient(to right, rgba(0, 0, 0, 0.015) 1px, transparent 1px),
 
 
-            background-image: 
 
+linear-gradient(to bottom, rgba(0, 0, 0, 0.015) 1px, transparent 1px);
 
 
-                linear-gradient(to right, rgba(0, 0, 0, 0.015) 1px, transparent 1px),
 
+}
 
 
-                linear-gradient(to bottom, rgba(0, 0, 0, 0.015) 1px, transparent 1px);
 
+/* Page views transition styles */
 
 
-        }
 
+.page-view {
 
 
-        /* Page views transition styles */
 
+display: none;
 
 
-        .page-view {
 
+opacity: 0;
 
 
-            display: none;
 
+transform: translateY(10px);
 
 
-            opacity: 0;
 
+transition: opacity 0.4s ease, transform 0.4s ease;
 
 
-            transform: translateY(10px);
 
+}
 
 
-            transition: opacity 0.4s ease, transform 0.4s ease;
 
+.page-view.active {
 
 
-        }
 
+display: block;
 
 
-        .page-view.active {
 
+opacity: 1;
 
 
-            display: block;
 
+transform: translateY(0);
 
 
-            opacity: 1;
 
+}
 
+ /* 1. Define the continuous scrolling animation */
+    @keyframes continuousScroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); } /* Scrolls exactly halfway */
+    }
 
-            transform: translateY(0);
+    /* 2. Apply it to the container track */
+    .animate-ticker {
+        display: flex;
+        width: max-content;
+        animation: continuousScroll linear infinite;
+    }
 
+    /* 3. Force each image frame to stay a locked size */
+    .ticker-item {
+        width: 320px;
+        flex-shrink: 0;
+    }
 
-
-        }
-
-
-
-    </style>
+    /* Your other existing body styles go below here... */
+    body {
+        font-family: 'Inter', sans-serif;
+    }
+</style>
 
 
 
@@ -1659,91 +1675,41 @@
 
 
 
-        function initSlider(sliderId, intervalTime) {
+       function makeSliderContinuous(sliderId, speedInSeconds) {
+    const slider = document.getElementById(sliderId);
+    if (!slider || slider.children.length === 0) return;
+
+    // 1. Tag all your current images with the layout class
+    const originalItems = Array.from(slider.children);
+    originalItems.forEach(item => {
+        item.classList.add('ticker-item');
+    });
+
+    // 2. Clone every image and append it right to the back of the line
+    originalItems.forEach(item => {
+        const clone = item.cloneNode(true);
+        slider.appendChild(clone);
+    });
+
+    // 3. Turn on the custom CSS classes and assign its cruise speed
+    slider.className = "animate-ticker";
+    slider.style.animationDuration = `${speedInSeconds}s`;
+}
+
+// Initialize them when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+    lucide.createIcons();
+    
+    // Pass the element ID and how many seconds it should take to loop
+    makeSliderContinuous('event-slider', 15);
+    makeSliderContinuous('nxt-slider', 22);
+    makeSliderContinuous('community-slider', 18);
+}
 
 
-
-            const slider = document.getElementById(sliderId);
-
-
-
-            if (!slider) return;
-
-
-
-            
-
-
-
-            let currentIndex = 0;
-
-
-
-            const totalImages = slider.children.length;
-
-
-
-
-
-
-
-            setInterval(() => {
-
-
-
-                currentIndex = (currentIndex + 1) % totalImages;
-
-
-
-                slider.style.transform = `translateX(-${currentIndex * 100}%)`;
-
-
-
-            }, intervalTime);
-
-
-
-        }
-
-
-
-
-
-
-
-        // Initialize carousels once DOM Content loads
-
-
-
-        document.addEventListener('DOMContentLoaded', () => {
-
-
-
-            lucide.createIcons();
-
-
-
-            initSlider('event-slider', 3000);
-
-
-
-            initSlider('nxt-slider', 3500);
-
-
-
-            initSlider('community-slider', 4000);
-
-
-
-        });
-
-
+);
 
     </script>
-
-
-
-</body>
 
 
 
