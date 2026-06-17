@@ -1555,162 +1555,86 @@ transform: translateY(0);
 
 
 
-        // Drawer Menu Actions
+function initSlider(sliderId, intervalTime) {
 
 
 
-        function toggleMenu() {
+const slider = document.getElementById(sliderId);
 
 
 
-            const drawer = document.getElementById('navigation-drawer');
+if (!slider) return;
 
 
 
-            const icon = document.getElementById('menu-icon');
 
 
 
-            if (drawer.classList.contains('-translate-x-full')) {
+let currentIndex = 0;
 
 
 
-                drawer.classList.remove('-translate-x-full');
+const totalImages = slider.children.length;
 
 
 
-                icon.setAttribute('data-lucide', 'x');
 
 
 
-            } else {
 
+setInterval(() => {
 
 
-                drawer.classList.add('-translate-x-full');
 
+currentIndex = (currentIndex + 1) % totalImages;
 
 
-                icon.setAttribute('data-lucide', 'menu');
 
+slider.style.transform = `translateX(-${currentIndex * 100}%)`;
 
 
-            }
 
+}, intervalTime);
 
 
-            lucide.createIcons();
 
-
-
-        }
-
-
-
-
-
-
-
-        function navigateTo(pageId) {
-
-
-
-            document.querySelectorAll('.page-view').forEach(view => {
-
-
-
-                view.classList.remove('active');
-
-
-
-            });
-
-
-
-            const targetPage = document.getElementById('page-' + pageId);
-
-
-
-            if (targetPage) {
-
-
-
-                targetPage.classList.add('active');
-
-
-
-            }
-
-
-
-            const drawer = document.getElementById('navigation-drawer');
-
-
-
-            if (!drawer.classList.contains('-translate-x-full')) {
-
-
-
-                toggleMenu();
-
-
-
-            }
-
-
-
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-
-
-
-        }
-
-
-
-
-
-
-
-        // Optimized Image Carousel Implementation
-
-
-
-       function makeSliderContinuous(sliderId, speedInSeconds) {
-    const slider = document.getElementById(sliderId);
-    if (!slider || slider.children.length === 0) return;
-
-    // 1. Tag all your current images with the layout class
-    const originalItems = Array.from(slider.children);
-    originalItems.forEach(item => {
-        item.classList.add('ticker-item');
-    });
-
-    // 2. Clone every image and append it right to the back of the line
-    originalItems.forEach(item => {
-        const clone = item.cloneNode(true);
-        slider.appendChild(clone);
-    });
-
-    // 3. Turn on the custom CSS classes and assign its cruise speed
-    slider.className = "animate-ticker";
-    slider.style.animationDuration = `${speedInSeconds}s`;
 }
 
-// Initialize them when the page loads
+
+
+
+
+
+
+// Initialize carousels once DOM Content loads
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
-    lucide.createIcons();
-    
-    // Pass the element ID and how many seconds it should take to loop
-    makeSliderContinuous('event-slider', 15);
-    makeSliderContinuous('nxt-slider', 22);
-    makeSliderContinuous('community-slider', 18);
-}
 
 
-);
 
-    </script>
+lucide.createIcons();
 
+
+
+initSlider('event-slider', 3000);
+
+
+
+initSlider('nxt-slider', 3500);
+
+
+
+initSlider('community-slider', 4000);
+
+
+
+});
+
+
+
+</script>
 
 
 </html>         
