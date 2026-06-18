@@ -476,20 +476,36 @@
 
     </div>
 </div>
-<div class="border-2 border-dashed border-premium-borderGray rounded bg-white h-64 overflow-hidden relative group hover:border-premium-gold transition-all duration-300">
+<div class="border-2 border-dashed border-premium-borderGray rounded bg-white h-64 overflow-hidden">
 
-    <!-- Image -->
-    <img
-        id="conclaveImage"
-        src="images/conclave1.png"
-        class="w-full h-full object-contain transition-opacity duration-700"
-    >
+    <div id="conclaveTrack" class="flex h-full transition-transform duration-1000 ease-in-out">
 
-    <!-- Label -->
-    <div class="absolute bottom-3 left-3 bg-premium-obsidian/80 text-white px-3 py-1 rounded">
-        <span class="text-[10px] font-semibold uppercase tracking-widest">
-            NXT Conclave Presentations
-        </span>
+        <div class="min-w-[33.333%] p-2 flex items-center justify-center">
+            <img src="images/conclave1.png" class="w-full h-full object-contain">
+        </div>
+
+        <div class="min-w-[33.333%] p-2 flex items-center justify-center">
+            <img src="images/conclave2.png" class="w-full h-full object-contain">
+        </div>
+
+        <div class="min-w-[33.333%] p-2 flex items-center justify-center">
+            <img src="images/conclave3.png" class="w-full h-full object-contain">
+        </div>
+
+        <div class="min-w-[33.333%] p-2 flex items-center justify-center">
+            <img src="images/conclave4.png" class="w-full h-full object-contain">
+        </div>
+
+
+        <!-- duplicates -->
+        <div class="min-w-[33.333%] p-2 flex items-center justify-center">
+            <img src="images/conclave1.png" class="w-full h-full object-contain">
+        </div>
+
+        <div class="min-w-[33.333%] p-2 flex items-center justify-center">
+            <img src="images/conclave2.png" class="w-full h-full object-contain">
+        </div>
+
     </div>
 
 </div>
@@ -1028,29 +1044,32 @@ setInterval(() => {
 </script>
 <script>
 
-const conclaveImages = [
-    "images/conclave1.png",
-    "images/conclave2.png",
-    "images/conclave3.png",
-    "images/conclave4.png",
-   
-];
-
-let conclaveIndex = 0;
-const conclaveImage = document.getElementById("conclaveImage");
+const conclaveTrack = document.getElementById("conclaveTrack");
+let conclavePos = 0;
 
 setInterval(() => {
 
-    conclaveImage.style.opacity = "0";
+    conclavePos++;
 
-    setTimeout(() => {
+    conclaveTrack.style.transform =
+        `translateX(-${conclavePos * 33.333}%)`;
 
-        conclaveIndex = (conclaveIndex + 1) % conclaveImages.length;
-        conclaveImage.src = conclaveImages[conclaveIndex];
+    if (conclavePos === 4) {
 
-        conclaveImage.style.opacity = "1";
+        setTimeout(() => {
 
-    }, 700);
+            conclaveTrack.style.transition = "none";
+            conclaveTrack.style.transform = "translateX(0)";
+            conclavePos = 0;
+
+            void conclaveTrack.offsetWidth;
+
+            conclaveTrack.style.transition =
+                "transform 1s ease-in-out";
+
+        }, 1000);
+
+    }
 
 }, 2000);
 
