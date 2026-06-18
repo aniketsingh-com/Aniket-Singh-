@@ -476,6 +476,23 @@
 
     </div>
 </div>
+<div class="border-2 border-dashed border-premium-borderGray rounded bg-white h-64 overflow-hidden relative group hover:border-premium-gold transition-all duration-300">
+
+    <!-- Image -->
+    <img
+        id="conclaveImage"
+        src="images/conclave1.png"
+        class="w-full h-full object-contain transition-opacity duration-700"
+    >
+
+    <!-- Label -->
+    <div class="absolute bottom-3 left-3 bg-premium-obsidian/80 text-white px-3 py-1 rounded">
+        <span class="text-[10px] font-semibold uppercase tracking-widest">
+            NXT Conclave Presentations
+        </span>
+    </div>
+
+</div>
                 </div>
             </div>
         </div>
@@ -1009,6 +1026,34 @@ setInterval(() => {
 
 }, 3000);
 </script>
+<script>
+
+const conclaveImages = [
+    "images/conclave1.png",
+    "images/conclave2.png",
+    "images/conclave3.png",
+    "images/conclave4.png",
+    "images/conclave5.png"
+];
+
+let conclaveIndex = 0;
+const conclaveImage = document.getElementById("conclaveImage");
+
+setInterval(() => {
+
+    conclaveImage.style.opacity = "0";
+
+    setTimeout(() => {
+
+        conclaveIndex = (conclaveIndex + 1) % conclaveImages.length;
+        conclaveImage.src = conclaveImages[conclaveIndex];
+
+        conclaveImage.style.opacity = "1";
+
+    }, 700);
+
+}, 3000);
+
 </script>
 </body>
 </html>
