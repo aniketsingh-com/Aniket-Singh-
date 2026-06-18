@@ -987,22 +987,13 @@
             document.getElementById('contact-success-view').classList.add('hidden');
         }
     </script>
-    <script>
+<script>
 const slider1 = document.getElementById("slider1");
-
 let current = 0;
-const totalImages = 5;
 
 setInterval(() => {
-
-    current++;
-
-    if (current >= totalImages) {
-        current = 0;
-    }
-
-    slider1.style.transform = `translateX(-${current * 100}%)`;
-
+    current = (current + 1) % 5;
+    slider1.style.transform = `translateX(-${current * 20}%)`;
 }, 3000);
 </script>
 </body>
